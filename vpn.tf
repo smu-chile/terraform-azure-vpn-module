@@ -59,6 +59,7 @@ resource "azurerm_local_network_gateway" "on_premise-a" {
   # }
 }
 
+
 ## Creación de Virtual Network Gateway Connection
 resource "azurerm_virtual_network_gateway_connection" "on_premise-a" {
   name                = "cl-vpn-${var.environment}-${var.regions}"
