@@ -97,6 +97,6 @@ variable "sa_datasize" {
 
 variable "sa_lifetime" {
   type        = string
-  default     ="27000"
+  default     = "27000"
   description = "sa_lifetime"
 }
