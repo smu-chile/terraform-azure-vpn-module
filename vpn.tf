@@ -19,19 +19,6 @@ resource "azurerm_public_ip" "vpn_on_premise-a" {
   public_ip_address_allocation = "dynamic"
 }
 
-# Creación de Local Network Gateway
-resource "azurerm_local_network_gateway" "on_premise-a" {
-  name                = "cl-vpn-${var.resource_group_name}-${var.regions}" # Nombre de Local Network Gateway
-  location            = var.regions                                        # Zona del Grupo de Recursos
-  resource_group_name = var.resource_group_name                            # Nombre del Grupo de Recursos
-  gateway_address     = var.gateway_address                                # IP de Conexion con Red Local
-  address_space       = ["${split(",", var.local_network_address_space)}"]
-
-  bgp_settings {
-    asn             = var.bgp_asn_number
-    peering_address = var.bgp_peering_address
-  }
-}
 
 ## Creación de Virtual Network Gateway
 resource "azurerm_virtual_network_gateway" "vpn_on_premise-a" {
@@ -55,6 +42,20 @@ resource "azurerm_virtual_network_gateway" "vpn_on_premise-a" {
   bgp_settings {
     asn             = var.bgp_asn_number
     peering_address = var.bgp_peering_address
+  }
+}
+
+# Creación de Local Network Gateway
+resource "azurerm_local_network_gateway" "on_premise-a" {
+  name                = "cl-vpn-${var.resource_group_name}-${var.regions}" # Nombre de Local Network Gateway
+  location            = var.regions                                        # Zona del Grupo de Recursos
+  resource_group_name = var.resource_group_name                            # Nombre del Grupo de Recursos
+  gateway_address     = var.gateway_address                                # IP de Conexion con Red Local
+  address_space       = ["${split(",", var.local_network_address_space)}"]
+
+  bgp_settings {
+    asn             = var.bgp_asn_number
+    peering_address = var.peering_address
   }
 }
 
