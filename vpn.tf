@@ -53,10 +53,10 @@ resource "azurerm_local_network_gateway" "on_premise-a" {
   gateway_address     = var.gateway_address                                # IP de Conexion con Red Local
   address_space       = ["${split(",", var.local_network_address_space)}"]
 
-  bgp_settings {
-    asn             = var.bgp_asn_number
-    peering_address = var.peering_address
-  }
+  # bgp_settings {
+  #   asn             = var.bgp_asn_number
+  #   peering_address = var.peering_address
+  # }
 }
 
 ## Creación de Virtual Network Gateway Connection
