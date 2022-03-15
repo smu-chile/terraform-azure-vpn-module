@@ -51,7 +51,7 @@ resource "azurerm_local_network_gateway" "on_premise-a" {
   location            = var.regions                                        # Zona del Grupo de Recursos
   resource_group_name = var.resource_group_name                            # Nombre del Grupo de Recursos
   gateway_address     = var.gateway_address                                # IP de Conexion con Red Local
-  address_space       = ["${split(",", var.local_network_address_space)}"]
+  address_space       = [element(split(",", var.local_network_address_space))]
 
   # bgp_settings {
   #   asn             = var.bgp_asn_number
