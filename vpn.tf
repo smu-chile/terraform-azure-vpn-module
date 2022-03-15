@@ -8,7 +8,7 @@ resource "azurerm_subnet" "gateway_subnet-a" {
   name                 = "GatewaySubnet"
   resource_group_name  = var.resource_group_name
   virtual_network_name = "cl-${var.app-name}-${var.environment}-${var.regions}"
-  address_prefix       = cidrsubnet(data.azurerm_virtual_network.vnet-a.address_space[0], 10, 0)
+  address_prefixes       = cidrsubnet(data.azurerm_virtual_network.vnet-a.address_space[0], 10, 0)
 }
 
 ## Creación de IP Pública Zona
@@ -16,7 +16,8 @@ resource "azurerm_public_ip" "vpn_on_premise-a" {
   name                         = "cl-azure-vpn-${var.app-name}-${var.regions}" # Nombre de IP Pública
   location                     = var.regions                                   # Zona del Grupo de Recursos
   resource_group_name          = var.resource_group_name                       # Nombre del Grupo de Recursos
-  public_ip_address_allocation = "dynamic"
+  allocation_method            = "Dynamic"
+
 }
 
 
