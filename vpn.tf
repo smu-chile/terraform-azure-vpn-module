@@ -64,6 +64,7 @@ resource "azurerm_local_network_gateway" "on_premise-a" {
 
 ## Creación de Virtual Network Gateway Connection
 resource "azurerm_virtual_network_gateway_connection" "on_premise-a" {
+  count               = length(split(",", var.local_network_address_space))
   name                = "cl-vpn-${var.environment}-${var.regions}"
   location            = var.regions             # Zona del Grupo de Recursos
   resource_group_name = var.resource_group_name # Nombre del Grupo de Recursos
