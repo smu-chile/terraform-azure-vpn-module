@@ -74,7 +74,7 @@ resource "azurerm_virtual_network_gateway_connection" "on_premise-a" {
   local_network_gateway_id   = azurerm_local_network_gateway.on_premise-a[count.index].id
   shared_key                 = var.vpn_shared_key
 
-  ipsec_policy = {
+  ipsec_policy  {
     dh_group         = "DHGroup14"
     ike_encryption   = "AES256"
     ike_integrity    = "SHA256"
