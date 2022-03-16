@@ -13,10 +13,10 @@ resource "azurerm_subnet" "gateway_subnet-a" {
 
 ## Creación de IP Pública Zona
 resource "azurerm_public_ip" "vpn_on_premise-a" {
-  name                         = "cl-azure-vpn-${var.app-name}-${var.regions}" # Nombre de IP Pública
-  location                     = var.regions                                   # Zona del Grupo de Recursos
-  resource_group_name          = var.resource_group_name                       # Nombre del Grupo de Recursos
-  allocation_method            = "Dynamic"
+  name                = "cl-azure-vpn-${var.app-name}-${var.regions}" # Nombre de IP Pública
+  location            = var.regions                                   # Zona del Grupo de Recursos
+  resource_group_name = var.resource_group_name                       # Nombre del Grupo de Recursos
+  allocation_method   = "Dynamic"
 
 }
 
@@ -75,14 +75,14 @@ resource "azurerm_virtual_network_gateway_connection" "on_premise-a" {
   shared_key                 = var.vpn_shared_key
 
   ipsec_policy = {
-    dh_group         = var.dh_group
-    ike_encryption   = var.ike_encryption
-    ike_integrity    = var.ike_integrity
-    ipsec_encryption = var.ipsec_encryption
-    ipsec_integrity  = var.ipsec_integrity
-    pfs_group        = var.pfs_group
-    sa_datasize      = var.sa_datasize
-    sa_lifetime      = var.sa_lifetime
+    dh_group         = "DHGroup14"
+    ike_encryption   = "AES256"
+    ike_integrity    = "SHA256"
+    ipsec_encryption = "AES256"
+    ipsec_integrity  = "SHA256"
+    pfs_group        = "None"
+    sa_datasize      = "102400000"
+    sa_lifetime      = "27000"
   }
 
   tags = {
