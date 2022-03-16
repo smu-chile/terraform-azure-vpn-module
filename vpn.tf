@@ -70,7 +70,7 @@ resource "azurerm_virtual_network_gateway_connection" "on_premise-a" {
 
   type                       = "IPsec"
   virtual_network_gateway_id = azurerm_virtual_network_gateway.vpn_on_premise-a.id
-  local_network_gateway_id   = azurerm_local_network_gateway.on_premise-a.id
+  local_network_gateway_id   = azurerm_local_network_gateway.on_premise-a[count.index].id
   shared_key                 = var.vpn_shared_key
 
   ipsec_policy = {
