@@ -4,11 +4,11 @@ data "azurerm_virtual_network" "vnet-a" {
   resource_group_name = var.resource_group_name
 }
 
-resource "azurerm_subnet" "gateway_subnet-a" {
+data "azurerm_subnet" "gateway_subnet-a" {
   name                 = "GatewaySubnet"
   resource_group_name  = var.resource_group_name
   virtual_network_name = "cl-${var.app-name}-${var.environment}-${var.regions}"
-  address_prefix       = cidrsubnet(data.azurerm_virtual_network.vnet-a.address_space[0], 10, 0)
+  address_prefix       = cidrsubnet(var.address_spaces[0], 10, 0)
 }
 
 ## Creación de IP Pública Zona

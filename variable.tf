@@ -38,6 +38,11 @@ variable "gateway_address" {
   description = "Public IP remote"
 }
 
+variable "address_spaces" {
+  type        = string
+  description = "Address Gatewaysubnet VPN"
+}
+
 variable "local_network_address_space" {
   type        = string
   description = "IP Local network"
