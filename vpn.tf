@@ -42,7 +42,7 @@ resource "azurerm_virtual_network_gateway" "vpn_on_premise-a" {
 
   bgp_settings {
     asn             = var.bgp_asn_number
-    peering_address = var.bgp_peering_address
+    # peering_address = var.bgp_peering_address
   }
 }
 
